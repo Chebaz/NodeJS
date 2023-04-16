@@ -1,10 +1,10 @@
-import figlet from "figlet";
+import * as fs from "node:fs";
 
-figlet("Ciao Alfio!!", function (err, data) {
-  if (err) {
-    console.log("Something went wrong...");
-    console.dir(err);
+fs.readFile("file-1.txt", { encoding: "utf-8" }, function (error, data) {
+  if (error) {
+    console.error(error);
     return;
   }
+
   console.log(data);
 });

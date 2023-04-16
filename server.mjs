@@ -4,10 +4,9 @@ const server = createServer((request, response) => {
   console.log("request recived");
 
   response.statusCode = 200;
-  response.setHeader("Content-Type", "text/html");
-  response.end(
-    "<html><body><h1>Questa pagina e' servita da Node.js!</h1></body></html>"
-  );
+  response.setHeader("Content-Type", "application/json");
+  const jsonResponseBody = JSON.stringify({ location: "Mars" });
+  response.end(jsonResponseBody);
 });
 
 server.listen(3000, () => {

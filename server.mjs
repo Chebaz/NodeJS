@@ -1,10 +1,29 @@
-import * as fs from "node:fs";
+const players = ["Joe", "Caroline", "Sabrina"];
+function luckyDraw(player) {
+  return new Promise((resolve, reject) => {
+    const win = Boolean(Math.round(Math.random()));
 
-fs.readFile("file-1.txt", { encoding: "utf-8" }, function (error, data) {
-  if (error) {
-    console.error(error);
-    return;
-  }
-
-  console.log(data);
+    process.nextTick(() => {
+      if (win) {
+        resolve(`${player} won a prize in the draw!`);
+      } else {
+        reject(new Error(`${player} lost the draw.`));
+      }
+    });
+  });
+}
+players.forEach((player) => {
+  luckyDraw(player)
+    .then((value) => console.log(value))
+    .catch((error) => console.error(error));
 });
+/*luckyDraw("Joe")
+  .then((value) => console.log(value))
+  .catch((error) => console.error(error));
+luckyDraw("Caroline")
+  .then((value) => console.log(value))
+  .catch((error) => console.error(error));
+luckyDraw("Sabrina")
+  .then((value) => console.log(value))
+  .catch((error) => console.error(error));
+*/
